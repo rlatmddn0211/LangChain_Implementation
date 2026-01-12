@@ -1,7 +1,6 @@
 # 🦜🔗 LangChain Implementation & Fullstack GPT
 
-> **Implementation of AI Services exploring RAG, Memory, and Chains through various LLM services.**
-> LangChain과 OpenAI/Gemini API를 활용한 풀스택 AI 웹 서비스 구현 프로젝트입니다.
+> **Implementation of exploring RAG, Memory, and Chains through various LLM services.**
 
 ## 🛠️ Tech Stack
 - **Framework:** `LangChain`, `FastAPI`, `Streamlit`
@@ -32,3 +31,4 @@ LangChain의 핵심 구조와 LCEL(LangChain Expression Language)을 활용한 �
 - **Data Flow Management:** `RunnableMap` (Dictionary 구조)을 활용하여 이전 체인의 출력값(예: `{"advice": senior_chain}`)을 다음 체인의 문맥(Context)으로 전달하는 파이프라인 구축.
 
 ---
+
