@@ -12,7 +12,7 @@
 
 ## 📚 Learning Progress
 
-### 🔹 Chapter 3: LangChain Basics (Current)
+### 🔹 LangChain Basics (Current)
 LangChain의 핵심 구조와 LCEL(LangChain Expression Language)을 활용한 체인 구성 학습/구현
 
 **1. Model I/O & Configuration**
@@ -30,5 +30,17 @@ LangChain의 핵심 구조와 LCEL(LangChain Expression Language)을 활용한 �
 - **Chain Composition:** `|` (Pipe) 연산자를 활용한 직관적인 체인 연결.
 - **Data Flow Management:** `RunnableMap` (Dictionary 구조)을 활용하여 이전 체인의 출력값(예: `{"advice": senior_chain}`)을 다음 체인의 문맥(Context)으로 전달하는 파이프라인 구축.
 
+**4. Advanced Prompting Techniques**
+- Few-Shot Learning: 모델에게 예제(Examples)를 제공하여 답변의 톤앤매너와 형식을 유도하는 FewShotPromptTemplate 및 FewShotChatMessagePromptTemplate 구현.
+- Dynamic Example Selection: 입력의 길이나 무작위 조건에 따라, 프롬프트에 포함될 예제를 동적으로 선택하는 LengthBasedExampleSelector 및 Custom Selector(Random) 활용.
+- Prompt Pipeline: 역할 부여(Intro), 예제(Example), 시작(Start) 등 여러 프롬프트 조각을 파이프라인으로 연결하여 복잡한 지시사항을 체계적으로 구성 (PipelinePromptTemplate).
+- Prompt Serialization: 프롬프트 템플릿을 json이나 yaml 파일로 저장하고 로드하여 코드와 프롬프트 데이터의 분리 관리.
+
+**5. Optimization & Efficiency**
+- Caching Strategies: InMemoryCache 및 SQLiteCache를 도입하여 동일한 질문에 대한 중복 API 호출을 방지, 비용 절감 및 응답 속도 최적화.
+- Cost Tracking: get_openai_callback을 활용하여 체인 실행 시 소모되는 토큰 양과 예상 비용을 실시간으로 추적 및 모니터링 .
+- Model Serialization: 설정된 LLM 모델(파라미터 포함)을 저장(save)하고 불러오는(load_llm) 과정을 통해 실험 환경의 재현성 확보
+
 ---
+
 
