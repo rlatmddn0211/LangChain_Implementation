@@ -38,10 +38,23 @@ LangChain의 핵심 구조와 LCEL(LangChain Expression Language)을 활용한 �
 
 **5. Optimization & Efficiency**
 - Caching Strategies: `InMemoryCache` 및 `SQLiteCache`를 도입하여 동일한 질문에 대한 중복 API 호출을 방지, 비용 절감 및 응답 속도 최적화.
-- Cost Tracking: `get_openai_callbac`k을 활용하여 체인 실행 시 소모되는 토큰 양과 예상 비용을 실시간으로 추적 및 모니터링 .
+- Cost Tracking: `get_openai_callback`을 활용하여 체인 실행 시 소모되는 토큰 양과 예상 비용을 실시간으로 추적 및 모니터링 .
 - Model Serialization: 설정된 LLM 모델(파라미터 포함)을 저장(save)하고 불러오는(`load_llm`) 과정을 통해 실험 환경의 재현성 확보
 
+**6. Memory & Context Management**
+- Memory Types 대화의 맥락 유지를 위한 다양한 메모리 전략 학습 및 구현
+  - `ConversationBufferMemory`: 모든 대화 기록을 Raw Text로 저장-
+  - `ConversationBufferWindowMemory`: 최신 $k$개의 대화만 유지하는 슬라이딩 윈도우 방식
+      1.`ConversationSummaryMemory`: LLM을 활용해 대화 내용을 요약하여 저장(토큰 절약)
+      2.`ConversationSummaryBufferMemory`: 최근 대화는 그대로 유지하고, 토큰 제한 (max_token_limit)을 넘어가면 오래된 대화부터 요약하는 하이브리드 방식
+      3.`ConversationKGMemory`: 대화 속 엔티티(Entity) 간의 관계를 지식 그래프(Knowledge Graph) 형태로 저장
+- **Memory Integration with LCEL**
+  - `RunnablePassthrough.assign`을 활용하여 체인 실행(invoke) 시점에 메모리를 동적으로 로드(load_memory_variables)하고 프롬프트에 주입하는 파이프라인 구축
+  - Context Injection: `MessagesPlaceholder`를 사용하여 유동적인 길이의 대화 내역(chat_history)을 프롬프트 템플릿의 적절한 위치에 할당하는 구조 설계
+  - State Management: `save_context` 메서드를 통해 사용자 입력(Input)과 AI 응답(Output)을 쌍(Pair)으로 메모리에 지속적으로 업데이트하여 멀티턴(Multi-turn) 대화 구현
+
 ---
+
 
 
 
