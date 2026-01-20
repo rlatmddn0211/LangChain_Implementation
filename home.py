@@ -1,0 +1,21 @@
+import streamlit as st
+st.set_page_config(
+    page_title="FullStackGPT Home",
+    page_icon="📑",
+)
+st.title("FullStackGPT Home")
+st.markdown(
+    """
+# Hello!
+
+Welcome to my FullStackGPT Protfolio!
+
+Here are the apps I made:
+- [ ] [DocumentGPT](/DocumentGPT)
+- [ ] [PrivateGPT](/PrivateGPT)
+- [ ] [QuizGPT](/QuizGPT)
+- [ ] [SiteGPT](/SiteGPT)
+- [ ] [MeetingGPT](/MeetingGPT)
+- [ ] [InverstorGPT](/InverstorGPT)
+    """
+)
